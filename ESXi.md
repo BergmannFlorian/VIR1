@@ -43,4 +43,10 @@ cpnv password : ``cpnv``
 Only SSH and tool on list
 Install grub : ``Yes``
 Others default
+Finish installation
 
+Restart Debian and run 
+
+    apt-get install open-vm-tools
+
+Restart Debian
