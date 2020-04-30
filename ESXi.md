@@ -45,7 +45,7 @@ Install grub : ``Yes``
 Others default
 Finish installation
 
-Restart Debian and run 
+Restart Debian and run (need to be connected, restart Debian if not work)
 
     apt-get install open-vm-tools
 
