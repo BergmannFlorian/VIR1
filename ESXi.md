@@ -50,3 +50,40 @@ Restart Debian and run (need to be connected, restart Debian if not work)
     apt-get install open-vm-tools
 
 Restart Debian
+
+# Add datastore
+Shut down VM ESXi
+Add new hard disk : ``100GB``
+Start VM
+
+Open web management : https://192.168.XXX.130/ui/#/login
+Go to **storage** and add new datastore :
+Type : ``Create new VMFS``
+Name : ``DS_02``
+Disk : ``Local VMware, Disk (mpx.vmhba0:C0:T1:L0)``
+Partitioning : `` Use full disk``
+VMFS version : ``6``
+
+# Create VM Windows
+In Workstation, create new VM ``Windows 10 x64``
+Run VM Windows and finish installation :
+Country : ``Suisse``
+Keyboard : ``Français (Suisse)``
+Account : ``cpnv``
+Password : ``cpnv``
+Finish install and shutdown
+
+# Migrate VM Windows from Workstation to ESXi
+In Workstation :
+Take snapshoot named : ``Prepare to migrate``
+In **VM** -> **Manage** -> **Clone...**
+Clone Source : Existing snapshot ``Prepare to migrate``
+Clone method : ``Create a linked clone``
+Finish clone
+
+Start clone and run ``C:\Windows\System32\Sysprep\sysprep.exe``
+After, Shutdown clone
+
+On **VM** -> **Manage** :
+Change Hardware Compatibility : ``ESX 6.5``, Don't create new clone
+Upload to : ``Other VMware vSphere Server``, enter ESXi VM info, and choose ``DS_02``
