@@ -85,5 +85,29 @@ Start clone and run ``C:\Windows\System32\Sysprep\sysprep.exe``
 After, Shutdown clone
 
 On **VM** -> **Manage** :
-Change Hardware Compatibility : ``ESX 6.5``, Don't create new clone
+Change Hardware Compatibility : ``Workstation 14.x``, Don't create new clone
 Upload to : ``Other VMware vSphere Server``, enter ESXi VM info, and choose ``DS_02``
+
+Run VM Windows on ESXi and finish installation :
+Country : ``Suisse``
+Keyboard : ``Français (Suisse)``
+Account : ``root``
+Password : ``root``
+
+# Install VM Tool on Windows 10
+In ESXi web interface -> **Virtual Machines** -> **Guest OS** : clic on **Install VMware Tools**
+Go back to Windows VM and install VMware Tools from virtual CD/DVD drive
+
+# Deploy App dokuwiki
+[Download ova](https://www.turnkeylinux.org/download?file=turnkey-dokuwiki-15.1-stretch-amd64.ova)
+In ESXi -> **Virtual Machines** menu -> **Register VM** :
+Creation type : ``Deploy a ...``
+VM Name : ``dokuwiki``
+OVA : choose ova downloaded
+Storage : ``DS_02``
+Finish Installation and run VM
+
+# App dokuwiki config
+Root password : ``Pa$$w0rd``
+Admin password : ``Pa$$w0rd``
+Other default
