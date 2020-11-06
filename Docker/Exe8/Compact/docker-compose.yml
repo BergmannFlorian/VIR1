@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web1:
+    build:
+      context: ./
+      dockerfile: web
+      args:
+        text: 'Web 1'
+    ports:
+    - "8881:80"
+  web2:
+    build:
+      context: ./
+      dockerfile: web
+      args:
+        text: 'Web 2'
+    ports:
+    - "8882:80"
+  front:
+    build: 
+      context: ./
+      dockerfile: front
+    ports:
+    - "8880:80"

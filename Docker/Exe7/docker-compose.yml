@@ -1,0 +1,27 @@
+version: "3"
+services:
+        db:
+                image: mysql
+                volumes:
+                        - ./data/lamp/db:/var/lib/mysql
+                environment:
+                        MYSQL_ROOT_PASSWORD: "root"
+                        MYSQL_DATABASE: "blog"
+                        MYSQL_USER: "mysql"
+                        MYSQL_PASSWORD: "mysql"
+        php:
+                image: php:7.3-apache
+                volumes:
+                        - ./data/lamp/php:/var/www/html
+                links:
+                        - db
+                ports:
+                        - "80:80"
+        phpmyadmin:
+                image: phpmyadmin/phpmyadmin
+                volumes:
+                        - ./data/lamp/admin:/var/www.html
+                links:
+                        - db
+                ports:
+                        - "8181:80"
